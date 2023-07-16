@@ -11,7 +11,11 @@ pipeline {
                         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                     ]
                 ]) {
-                    sh "aws s3 ls"
+                    sh '''
+                    aws ec2 stop-instances \
+                        --region us-east-1 \
+                        --instance-ids i-07d794945c891c90d
+                    '''
                 }
             }
         }
